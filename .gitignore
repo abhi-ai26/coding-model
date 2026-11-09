@@ -1,0 +1,20 @@
+# secrets
+.env
+*.env
+*.pem
+id_*
+*.key
+# python
+.venv/
+__pycache__/
+*.pyc
+# training artefacts (live on the pod / object storage, never here)
+out*/
+*.bin
+*.pt
+*.safetensors
+*.gguf
+wandb/
+data/
+# mac
+.DS_Store
