@@ -18,3 +18,4 @@ wandb/
 data/
 # mac
 .DS_Store
+qwen-coder-1.5b-sft/

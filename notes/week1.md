@@ -33,3 +33,8 @@
 - v1 bench said "no difference" — two flaws: assumed 400 tokens (model stopped ~120), and short context is CPU-launch-bound so GPU savings are hidden
 - v2 context sweep (200 new tokens): 16 → 47 vs 51 tok/s; 2K → 49 vs 11 (4.5×); 8K → 46 vs 2.7 (17×); no-cache time linear in context
 - with cache flat ~47 tok/s (≈5× below the 220 tok/s memory-bound ceiling: eager-mode overhead)
+
+## Day 4 log
+- Unsloth LoRA r=16 on Qwen2.5-Coder-1.5B, 5k OpenCoder educational_instruct, 1 epoch, 313 steps, 4 min 28 s on A40 (18.7 samples/s)
+- loss 0.70 → 0.30 by step 70, flat 0.27–0.30 after: format learned in ~1k samples; the floor is the answers' own unpredictability
+- merged 16-bit model saved to qwen-coder-1.5b-sft (3 GB); W&B run d4-sft-1.5b, project week1
