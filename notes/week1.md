@@ -27,3 +27,9 @@
 - samples: docstrings, nested defs, numpy idioms, but repetition loops and a duplicate parameter name; fluency not competence (4 tokens/param)
 - cost ≈ ₹60; W&B run d2-85m in project pycode
 - lesson: Stop releases the GPU; the network volume is the real home, the pod is disposable
+
+## Day 3 log
+- Qwen2.5-Coder-1.5B, A40, HF eager, batch 1: KV cache 28 KB/token (2×28 layers×2 KV heads×128×2 B) → 0.88 GB @32K, 28 GB @1M
+- v1 bench said "no difference" — two flaws: assumed 400 tokens (model stopped ~120), and short context is CPU-launch-bound so GPU savings are hidden
+- v2 context sweep (200 new tokens): 16 → 47 vs 51 tok/s; 2K → 49 vs 11 (4.5×); 8K → 46 vs 2.7 (17×); no-cache time linear in context
+- with cache flat ~47 tok/s (≈5× below the 220 tok/s memory-bound ceiling: eager-mode overhead)
