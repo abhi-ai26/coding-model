@@ -38,3 +38,14 @@
 - Unsloth LoRA r=16 on Qwen2.5-Coder-1.5B, 5k OpenCoder educational_instruct, 1 epoch, 313 steps, 4 min 28 s on A40 (18.7 samples/s)
 - loss 0.70 → 0.30 by step 70, flat 0.27–0.30 after: format learned in ~1k samples; the floor is the answers' own unpredictability
 - merged 16-bit model saved to qwen-coder-1.5b-sft (3 GB); W&B run d4-sft-1.5b, project week1
+
+## Day 5 log (EvalPlus 0.4.0.dev44, vLLM 0.33, greedy, bf16, A40 — run by us)
+| model | prompt | HumanEval | HumanEval+ | MBPP | MBPP+ |
+|---|---|---|---|---|---|
+| base Qwen2.5-Coder-1.5B | completion | 0.396 | 0.335 | 0.696 | 0.582 |
+| ours (5k SFT) | completion | 0.567 | 0.463 | 0.754 | 0.624 |
+| ours (5k SFT) | instruction, own template | 0.707 | 0.628 | – | – |
+- base MBPP+ matches Qwen's reported 58.6 → harness trusted; HumanEval base 3 pts under their 43.9 (prompt sensitivity)
+- gain generalises (+4.2 MBPP+) but HumanEval+ gain is 3× larger: format/stopping + distribution match with textbook data; contamination check pending (Week 5)
+- SFT unlocks, it doesn't add: 5k samples ≈ official Instruct on HumanEval (0.707 vs 0.707), 4 pts under on HumanEval+
+- EvalPlus caches by model name: use --root for a second prompt mode; vLLM 164 problems in 88 s vs ~40 min eager
