@@ -20,3 +20,11 @@
 | Week 1 nanoGPT 124M | 124M | 524M | 3.9e17 | 57 | 65–115 min | 102 min (67 achieved) |
 | Week 2 nanochat d8 | 42M | 393M | 1.39e17 | 50 | 46 min | 32 min (72 achieved) |
 | Plan: 30B-A3B SFT | 3B active | 3.6B | 6.5e19 | 160 (H100 FP8, 40%) | ~110 GPU-h | — |
+
+## Day 4 log — SFT (mid-training now lives inside chat_sft)
+- chat_sft on d8: 1,867 steps, 39.9 min (ETA said 40), 203k tok/s, MFU 47.9%; loss 2.25 → 1.35; chat val bpb 0.729 → 0.420
+- in-training eval (full ARC/MMLU; 24-problem GSM8K/HumanEval): ARC-Easy 32.5%, ARC-Challenge 27.6%, MMLU 29.4%, GSM8K 0, HumanEval 0, ChatCORE 0.038
+- same model: ARC-Easy 47.9% by likelihood ranking (base_eval) vs 32.5% by generated answer (chat_eval) — the harness is part of the number
+- chat_cli: capital of France → Paris with a stammer; reverse string → correct s[::-1] but wrong example output (cannot execute); "sky blue in two sentences" → paragraph about adding integers ("two" pulled it into the maths SFT data)
+- chat_web removed upstream (da32e1d "remove UI bloat") → CLI only; RL skipped: GSM8K reward is 0 at this size, GRPO has no signal
+- W&B: nanochat-sft/d8_sft; cost ≈ ₹25
