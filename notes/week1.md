@@ -49,3 +49,8 @@
 - gain generalises (+4.2 MBPP+) but HumanEval+ gain is 3× larger: format/stopping + distribution match with textbook data; contamination check pending (Week 5)
 - SFT unlocks, it doesn't add: 5k samples ≈ official Instruct on HumanEval (0.707 vs 0.707), 4 pts under on HumanEval+
 - EvalPlus caches by model name: use --root for a second prompt mode; vLLM 164 problems in 88 s vs ~40 min eager
+
+## Day 6 log
+- published https://huggingface.co/abhi-ai26/qwen-coder-1.5b-sft-week1 (private for now), model card with own-harness numbers, prompt format, caveats
+- 7 files, 3.09 GB; card states Claude/ChatGPT tutoring, pending contamination check
+- Gate 1 deliverable in place on day 6 of week 1
