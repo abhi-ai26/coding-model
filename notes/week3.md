@@ -34,3 +34,7 @@
 - rules adopted: strip future history in every environment we collect from (Week 9); audit environments for shortcuts before RL (Week 15); report container preparation with every SWE-bench number
 - sb-cli hosted evaluator returned 500 → local harness is the standard
 - scripts: week3/traj_stats.py; raw stats notes/week3-traj-flash.txt
+- OpenCode + teacher on a parse_iso task: wrote both files, made a temp venv for pytest, 6/6 passed in minutes, reported what it did
+- OpenCode + our 1.5B (vLLM through SSH tunnel) needed plumbing first: IPv4 baseURL (Node resolves localhost to ::1), --enable-auto-tool-choice --tool-call-parser hermes, --max-model-len 32768, model limits in opencode.json
+- result: failure mode (a) — answered in chat ("Here is the code to solve this problem"), zero tool calls, no files, no tests, 3.9 s; code wrong (date never parsed; finally: return swallows the ValueError)
+- Week 9 trajectories + Week 12 template give a model hands; Week 15 RL makes it check; Week 14 ships the serving config
