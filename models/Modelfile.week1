@@ -1,0 +1,7 @@
+FROM ./week1-sft-Q4_K_M.gguf
+TEMPLATE """### Instruction:
+{{ .Prompt }}
+
+### Response:
+"""
+PARAMETER stop "<|endoftext|>"
