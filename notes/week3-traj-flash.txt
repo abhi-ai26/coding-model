@@ -1,0 +1,29 @@
+sqlfluff__sqlfluff-1625: 26 commands, 8 reading, 12 git-history lookups, $0.011
+    ls -la && git log --oneline -5
+    git log --all --oneline -- src/sqlfluff/rules/L031.py | head -30
+    git log --all --oneline | grep -iE "L031|alias|join condition" | head -40
+    git log --all --oneline --since="2021-08-01" --until="2021-10-01" | head -100
+    git log --all --oneline --grep="L031\|1617\|1618\|1625\|1638\|1643" -i | head -50
+    git branch -a && git tag | tail -20 && git log --all --oneline --decorate -20
+    git log --all --format='%h %ad %s' --date=short -- src/sqlfluff/rules/L031.py | head -30
+    git log --all --format='%h %ad %s' --date=short --ancestry-path HEAD..3.2.5 -- src/sqlfluff/rules/L031.py | ta
+    git show --stat 05d172f8d && git show 05d172f8d -- src/sqlfluff/rules/L031.py test/fixtures/rules/std_rule_cas
+    git show --stat 15cba85b6 && git show 15cba85b6 -- src/sqlfluff/rules/L031.py test/fixtures/rules/std_rule_cas
+    git merge-base --is-ancestor HEAD 05d172f8d && echo "HEAD is ancestor of fix" || echo "not ancestor"; git show
+    git log --all --format='%h %ad %s' --date=short --grep="1624\|no join present\|from clauses and join" -i | hea
+sqlfluff__sqlfluff-1733: 45 commands, 19 reading, 11 git-history lookups, $0.048
+    ls -la && git status --short && git log --oneline -5
+    git remote -v && git branch -a && git log --all --oneline -- src/sqlfluff/rules/L003.py | head -20
+    git log --all --oneline -- src/sqlfluff/rules/L036.py | head -20 && git tag --list | tail -20
+    git log --all --oneline --grep="Extra space" --grep="first field" --grep="WITH" --grep="indent" -i | head -80
+    git log --all --oneline --since=2021-04-01 --until=2021-09-01 | head -120
+    git show -s --format='%H %ci %s' HEAD && git log --all --oneline --grep='Extra space when first field' -i && g
+    git log --all --oneline --since=2021-04-15 --until=2021-05-31 -- src/sqlfluff/rules/L003.py src/sqlfluff/rules
+    git log --all --oneline --since=2021-10-24 --until=2021-12-31 -- src/sqlfluff/rules/L003.py src/sqlfluff/rules
+    git log --all --oneline --since=2021-10-24 --until=2021-12-31 | grep -i -E "indent|space|L003|L036|L039|fix" |
+    git show --stat --oneline 482e833fa && git show 482e833fa -- src/sqlfluff/rules/L003.py src/sqlfluff/rules/L03
+    git show 482e833fa
+sqlfluff__sqlfluff-2419: 36 commands, 27 reading, 3 git-history lookups, $0.012
+    ls -la && git log --oneline -5
+    git remote -v; git log --all --oneline | grep -i "L060\|specific error" | head
+    git show 90ae49a21 --stat && echo "=====DIFF=====" && git show 90ae49a21
