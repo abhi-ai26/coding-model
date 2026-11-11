@@ -38,3 +38,8 @@
 - OpenCode + our 1.5B (vLLM through SSH tunnel) needed plumbing first: IPv4 baseURL (Node resolves localhost to ::1), --enable-auto-tool-choice --tool-call-parser hermes, --max-model-len 32768, model limits in opencode.json
 - result: failure mode (a) — answered in chat ("Here is the code to solve this problem"), zero tool calls, no files, no tests, 3.9 s; code wrong (date never parsed; finally: return swallows the ValueError)
 - Week 9 trajectories + Week 12 template give a model hands; Week 15 RL makes it check; Week 14 ships the serving config
+
+## Day 5 log — contamination check (week3/decontam.py, week3/decontam_prompts.py)
+- 13-gram overlap vs HumanEval + MBPP (statements + code + tests): 131/5000 samples (2.62%) flagged; top hits are idioms (primality loop HumanEval/94: 196; bubble-sort swap MBPP/101: 189)
+- statements only: 0/164 HumanEval, 8/378 MBPP (57, 96, 145, 167, 226, 247, 395, 435) → MBPP+ inflated by ≤ ~2 pts; HumanEval+ stands
+- model card updated with both numbers; lesson: n-gram overlap against code catches idioms, against statements catches leaks — report both
