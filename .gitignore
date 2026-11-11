@@ -24,3 +24,4 @@ qwen-coder-7b-qlora/
 unsloth_compiled_cache/
 *.raw.jsonl
 *.log
+qwen3-30b-a3b-qlora-adapter/
