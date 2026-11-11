@@ -26,3 +26,11 @@
 - 7B QLoRA (instruction): HumanEval+ 0.744, MBPP+ 0.717 (official Instruct ≈ 0.84 / 0.72)
 - gap to official widened 4 → 10 pts on HumanEval+; MBPP+ at parity; cost per point ≈ ₹0.4
 - script bug: deactivate inside a script launched from an active venv keeps the venv python → call /usr/bin/python3 explicitly
+
+## Day 3 log — the harness (Mac, OrbStack Docker, Mini-SWE-Agent 2.4.6)
+- 3 SWE-bench Lite dev instances (sqlfluff) with DeepSeek V4.1 Flash via OpenRouter: 6 min 43 s, $0.07; 26/45/36 commands
+- all 3 "resolved" by the official harness (swebench.harness.run_evaluation, local Docker, 64 s)
+- BUT: 12/11/2 git-history commands per run; the model found the upstream fix in the container's .git (future commits present), verified `git merge-base --is-ancestor HEAD <fix>`, and copied the diff
+- rules adopted: strip future history in every environment we collect from (Week 9); audit environments for shortcuts before RL (Week 15); report container preparation with every SWE-bench number
+- sb-cli hosted evaluator returned 500 → local harness is the standard
+- scripts: week3/traj_stats.py; raw stats notes/week3-traj-flash.txt
