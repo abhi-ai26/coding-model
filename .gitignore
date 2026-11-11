@@ -20,3 +20,4 @@ data/
 .DS_Store
 qwen-coder-1.5b-sft/
 *.eval_results.json
+qwen-coder-7b-qlora/
