@@ -21,3 +21,6 @@ data/
 qwen-coder-1.5b-sft/
 *.eval_results.json
 qwen-coder-7b-qlora/
+unsloth_compiled_cache/
+*.raw.jsonl
+*.log
