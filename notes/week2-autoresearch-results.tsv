@@ -1,0 +1,58 @@
+commit	val_bpb	memory_gb	status	description
+a85faa6	1.189815	22.3	keep	baseline (A40, DEVICE_BATCH_SIZE=64)
+e81ecad	1.099126	22.1	keep	TOTAL_BATCH_SIZE 2**19->2**17
+1107e86	1.096826	11.3	keep	batch 2**16 (DBS 32)
+6f9dc70	1.100318	6.8	discard	DEPTH 8->6
+09eec34	1.113739	5.9	discard	batch 2**15 DBS 16
+b4859f5	1.094636	11.3	keep	MATRIX_LR 0.04->0.03
+d809331	1.094132	11.3	keep	MATRIX_LR 0.03->0.02
+6bb3668	1.095556	11.3	discard	EMBEDDING_LR 0.6->0.3
+6c6d7ee	1.093817	11.3	keep	WARMDOWN_RATIO 0.5->0.7
+d285b50	1.091648	11.3	keep	UNEMBEDDING_LR 0.004->0.008
+a615359	1.098368	11.3	discard	UNEMBEDDING_LR 0.016
+d5da099	1.092579	11.3	discard	WEIGHT_DECAY 0.2->0.1
+f13c438	1.128032	17.1	discard	DEPTH 8->10
+5c4d730	1.091590	11.3	keep	WINDOW_PATTERN SSSL->SSSS (marginal)
+887c1cc	1.089173	11.3	keep	short window 1024->512
+d544afe	1.089398	11.3	discard	short window 256
+e67c432	1.087991	11.3	keep	WINDOW_PATTERN back to SSSL (with 512 short)
+1d4b60d	1.088835	11.3	discard	adam beta1 0.9 + MATRIX_LR 0.025
+192582f	1.089377	11.3	discard	SCALAR_LR 0.25
+593ecff	1.087960	11.3	keep	SCALAR_LR 0.5->1.0 (marginal)
+3d60488	1.095781	11.3	discard	softcap 15->30
+8a5054b	1.092443	11.3	discard	softcap 15->8
+715cb6b	1.095299	11.3	discard	HEAD_DIM 128->64
+062e318	1.098203	11.3	discard	WARMUP 0.03 + FINAL_LR_FRAC 0.05
+7d12842	1.093123	11.3	discard	x0_lambdas init 0.2
+46b05ca	1.092148	11.3	discard	x0_lambdas init 0.05
+f29c372	1.092467	11.3	discard	MATRIX_LR 0.015
+30cafd9	1.090317	10.2	discard	MLP 4x->3x
+3642225	1.090721	12.3	discard	MLP 4x->5x
+2b56578	1.088159	11.3	discard	EMBEDDING_LR 1.0
+7a8ad72	1.088125	11.3	discard	muon momentum ramp 300->100
+6230bb1	1.096970	11.3	discard	Muon ns_steps 5->3
+efd3958	1.089095	11.3	discard	WEIGHT_DECAY 0.3
+f5a550b	1.088866	11.3	discard	rope base 50000
+4c450f5	1.088773	11.3	discard	Adam beta2 0.99
+bcebc6c	1.098598	8.7	discard	ASPECT_RATIO 64->48
+d4691e8	1.120278	13.9	discard	ASPECT_RATIO 64->80
+abadfc0	1.095969	11.6	discard	VE on all layers
+2551ede	1.091283	11.3	discard	resid_lambdas LR x5
+1698654	1.088330	11.3	discard	resid_lambdas LR x0.2
+24f1dcf	1.088121	11.3	discard	q scale 1.2 after norm
+5146281	1.088723	10.1	discard	DEPTH 8->7
+71f32bf	1.092099	11.3	discard	softcap 15->20
+93c6bc2	1.088478	11.3	discard	WARMDOWN_RATIO 0.7->0.85
+531729b	1.089977	11.3	discard	UNEMBEDDING_LR 0.006
+8197efc	1.091406	11.3	discard	UNEMBEDDING_LR 0.011
+a82269b	1.087799	11.3	keep	leaky_relu(0.1)^2 MLP activation (marginal)
+32d5f56	1.087238	11.3	keep	leaky slope 0.1->0.25
+89acddf	1.087172	11.3	keep	leaky slope 0.25->0.5 (marginal)
+d902886	1.092640	11.3	discard	plain x^2 activation
+e826597	1.087227	11.3	discard	MATRIX_LR 0.025
+413380e	1.096362	11.3	discard	MLP c_proj init std 0.001 instead of zeros
+9b39e04	1.088367	11.3	discard	WINDOW_PATTERN SSSSSSSL
+21c5c47	1.089818	11.3	discard	WINDOW_PATTERN SL
+9e0e077	1.086890	11.3	keep	ve_gate_channels 32->64
+d238726	1.089033	11.3	discard	ve_gate_channels 128
+73bfcdf	1.091306	11.3	discard	seed 42->7 (noise check: ~0.004 seed variance, so gains <0.003 are noise)

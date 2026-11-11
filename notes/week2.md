@@ -28,3 +28,12 @@
 - chat_cli: capital of France → Paris with a stammer; reverse string → correct s[::-1] but wrong example output (cannot execute); "sky blue in two sentences" → paragraph about adding integers ("two" pulled it into the maths SFT data)
 - chat_web removed upstream (da32e1d "remove UI bloat") → CLI only; RL skipped: GSM8K reward is 0 at this size, GRPO has no signal
 - W&B: nanochat-sft/d8_sft; cost ≈ ₹25
+
+## Day 6 log — autoresearch overnight (Claude Code / Sonnet on Claude Max, one A40)
+- autoresearch baseline needed DEVICE_BATCH_SIZE 128→64 on 46 GB (logits buffer OOM); baseline val_bpb 1.1898, 180 steps per 5-min budget (H100 reference: 0.998, 953 steps)
+- 57 experiments, 15 keep / 42 discard / 0 crash; best 1.0869 (−8.6%) at 9e0e077; peak VRAM 11.3 GB
+- one change did almost everything: TOTAL_BATCH_SIZE 2**19→2**17→2**16 with DBS 32 (180→~1,300 steps) took 1.190→1.099; the other ~50 runs bought 0.012
+- other keeps: attention window 1024→512, UNEMBEDDING_LR 0.004→0.008, MATRIX_LR 0.04→0.02, WARMDOWN_RATIO 0.7, leaky-ReLU², ve_gate 32→64; nothing architectural mattered
+- agent measured seed noise ≈ 0.004 bpb unprompted and flagged keeps < 0.003 as noise → rule for Weeks 11–13: two baseline seeds before any tuning campaign
+- autoresearch's mfu_percent uses an H100 constant: ignore on A40; first commit failed on missing git identity, agent set a repo-local one
+- diff and TSV in notes/week2-autoresearch.*; cost ≈ ₹300 of A40 plus Max quota
