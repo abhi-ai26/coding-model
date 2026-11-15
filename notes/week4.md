@@ -9,3 +9,6 @@
 - loss 0.67 → 0.28 (train avg 0.298); adapter 2.5 GB (LoRA on every expert ≠ thin) → target attention/shared layers on MoEs
 - vLLM 0.33 has dropped bitsandbytes → could not serve the 4-bit base; generated HumanEval with Unsloth inference (week4/gen_humaneval.py, batch 8, ~28 min) and scored with evalplus --samples
 - HumanEval 0.890 / HumanEval+ 0.817 (instruction mode; runtime differs from the vLLM rows; base number pending)
+- base Qwen3-30B-A3B (4-bit, completion mode, same Unsloth runtime): HumanEval 0.543 / HumanEval+ 0.482 → adapter +33.5 pts on HumanEval+
+- gain per GPU-minute: 1.5B 6.5, 7B 2.7, 30B-A3B 0.7 — small dense wins per minute, MoE wins on ceiling (0.817)
+- pod left running idle 11–15 Nov: ~$60 (~₹5,000) wasted → rule: Stop whenever away > 1 h; every unattended job ends with runpodctl stop
